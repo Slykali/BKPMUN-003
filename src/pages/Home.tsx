@@ -1,17 +1,13 @@
 import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useScroll, useTransform, useInView } from 'framer-motion'
-import { ArrowRight, Calendar, Globe, Shirt, FileText, Trophy, Book } from 'lucide-react'
+import { motion, useInView } from 'framer-motion'
+import { ArrowRight, Shirt } from 'lucide-react'
 import MagneticButton from '../components/MagneticButton'
 import Confetti from '../components/Confetti'
 import GlitchText from '../components/GlitchText'
+import CountdownTimer from '../components/CountdownTimer'
 
 const Home = () => {
-  const { scrollY } = useScroll()
-  const y1 = useTransform(scrollY, [0, 300], [0, 200])
-  const y2 = useTransform(scrollY, [0, 300], [0, 100])
-  const y3 = useTransform(scrollY, [0, 300], [0, 150])
-  const y4 = useTransform(scrollY, [0, 300], [0, 50])
   const [confettiTrigger, setConfettiTrigger] = useState(false)
 
   const featuresRef = useRef(null)
@@ -20,43 +16,21 @@ const Home = () => {
   const statsInView = useInView(statsRef, { once: true })
 
   const features = [
-    { icon: Calendar, title: 'customizable', description: 'customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable' },
-    { icon: Globe, title: 'customizable', description: 'customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable' },
-    { icon: Shirt, title: 'customizable', description: 'customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable' },
-    { icon: FileText, title: 'customizable', description: 'customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable' },
-    { icon: Trophy, title: 'customizable', description: 'customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable' },
-    { icon: Book, title: 'customizable', description: 'customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable' },
+    { icon: Shirt, title: 'Dress Code', description: 'Formal clothing is required for all participants. Please adhere to the formal dress code throughout the conference.' },
   ]
 
-  const stats = [
-    { value: 0, label: 'customizable' },
-    { value: 0, label: 'customizable' },
-    { value: 0, label: 'customizable' },
-    { value: 0, label: 'customizable' },
-  ]
+  const stats = []
 
   return (
     <div className="pt-20">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Animated Background Shapes */}
+        {/* Background Shapes */}
         <div className="absolute inset-0 overflow-hidden">
-          <motion.div
-            style={{ y: y1 }}
-            className="absolute top-20 left-20 w-96 h-96 bg-white/5 rounded-full blur-3xl"
-          />
-          <motion.div
-            style={{ y: y2 }}
-            className="absolute top-40 right-20 w-96 h-96 bg-white/3 rounded-full blur-3xl"
-          />
-          <motion.div
-            style={{ y: y3 }}
-            className="absolute bottom-20 left-1/2 w-96 h-96 bg-white/5 rounded-full blur-3xl"
-          />
-          <motion.div
-            style={{ y: y4 }}
-            className="absolute bottom-40 right-1/3 w-96 h-96 bg-white/3 rounded-full blur-3xl"
-          />
+          <div className="absolute top-20 left-20 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+          <div className="absolute top-40 right-20 w-96 h-96 bg-white/3 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 left-1/2 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-40 right-1/3 w-96 h-96 bg-white/3 rounded-full blur-3xl" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -87,22 +61,14 @@ const Home = () => {
               transition={{ delay: 0.5 }}
               className="text-xl text-white font-semibold mb-8"
             >
-              customizable customizable customizable
+              Bahçeşehir Koleji Parkorman Model United Nations conference
             </motion.p>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-              className="text-white/60 text-lg max-w-3xl mx-auto mb-10 leading-relaxed"
-            >
-              customizable customizable customizable customizable customizable customizable customizable
-              customizable customizable customizable customizable customizable customizable customizable
-            </motion.p>
+            <CountdownTimer targetDate="2026-01-14 09:00:00" />
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7 }}
-              className="flex flex-wrap justify-center gap-4"
+              className="flex flex-wrap justify-center gap-4 mt-8"
             >
               <MagneticButton
                 onClick={() => {
@@ -197,32 +163,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section ref={statsRef} className="py-20 bg-black relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={statsInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ delay: index * 0.1, type: 'spring' }}
-                whileHover={{ scale: 1.1 }}
-                className="text-center glass-effect rounded-2xl p-8 card-hover starry-border pulse-glow hover-lift"
-              >
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={statsInView ? { opacity: 1 } : {}}
-                  className="text-5xl font-orbitron font-black gradient-text-premium neon-glow mb-2"
-                >
-                  {stat.value}
-                </motion.div>
-                <div className="text-white/60 font-medium">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
     </div>
   )
 }

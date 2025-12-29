@@ -9,15 +9,28 @@ const Committees = () => {
   const infoInView = useInView(infoRef, { once: true })
 
   const committees = [
-    { icon: Shield, name: 'customizable', description: 'customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable', members: 'customizable', status: 'customizable', topics: ['customizable', 'customizable', 'customizable'] },
-    { icon: Globe, name: 'customizable', description: 'customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable', members: 'customizable', status: 'customizable', topics: ['customizable', 'customizable', 'customizable'] },
+    { 
+      icon: Globe, 
+      name: 'WHO', 
+      description: 'The World Health Organization committee focuses on global health issues, disease prevention, and healthcare accessibility worldwide.', 
+      usg: 'Tuna Deveci',
+      directorGeneral: 'Tuana Kendirici',
+      status: 'Active', 
+      topics: ['Global Health', 'Disease Prevention', 'Healthcare Access'] 
+    },
+    { 
+      icon: Shield, 
+      name: 'UNWOMEN', 
+      description: 'The UN Women committee addresses gender equality, women\'s rights, and empowerment issues on a global scale.', 
+      usg: 'Emir Karayazıcı',
+      directorGeneral: null,
+      status: 'Active', 
+      topics: ['Gender Equality', 'Women\'s Rights', 'Empowerment'] 
+    },
   ]
 
   const eventInfo = [
-    { icon: Calendar, title: 'customizable', description: 'customizable customizable customizable customizable customizable customizable customizable' },
-    { icon: MapPin, title: 'customizable', description: 'customizable customizable customizable customizable customizable customizable customizable' },
-    { icon: Shirt, title: 'customizable', description: 'customizable customizable customizable customizable customizable customizable customizable' },
-    { icon: FileText, title: 'customizable', description: 'customizable customizable customizable customizable customizable customizable customizable' },
+    { icon: Shirt, title: 'Dress Code', description: 'Formal clothing is required for all participants. Please adhere to the formal dress code throughout the conference.' },
   ]
 
   return (
@@ -75,11 +88,19 @@ const Committees = () => {
                     {committee.name}
                   </h3>
                   <p className="text-white/60 mb-6 leading-relaxed relative z-10">{committee.description}</p>
-                  <div className="flex justify-center gap-6 mb-6 relative z-10">
+                  <div className="mb-6 relative z-10 space-y-3">
                     <div className="text-center">
-                      <div className="text-2xl font-orbitron font-black gradient-text">{committee.members}</div>
-                      <div className="text-xs text-white/50">Members</div>
+                      <div className="text-sm text-white/70 mb-1">Under Secretary General</div>
+                      <div className="text-lg font-semibold text-white">{committee.usg}</div>
                     </div>
+                    {committee.directorGeneral && (
+                      <div className="text-center">
+                        <div className="text-sm text-white/70 mb-1">Director General</div>
+                        <div className="text-lg font-semibold text-white">{committee.directorGeneral}</div>
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex justify-center gap-6 mb-6 relative z-10">
                     <div className="text-center">
                       <div className="text-2xl font-orbitron font-black gradient-text">{committee.status}</div>
                       <div className="text-xs text-white/50">Status</div>

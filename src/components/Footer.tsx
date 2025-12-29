@@ -9,7 +9,7 @@ const Footer = () => {
           <div>
             <h4 className="text-xl font-bold mb-4 gradient-text-premium neon-glow">BKPMUN</h4>
             <p className="text-white/60 text-sm">
-              customizable customizable customizable customizable customizable customizable customizable
+              Bahçeşehir Koleji Parkorman Model United Nations conference. Join us for an exceptional MUN experience.
             </p>
           </div>
           <div>
@@ -21,18 +21,8 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/study-guides" className="text-white/60 hover:text-white transition-colors text-sm">
-                  Study Guides
-                </Link>
-              </li>
-              <li>
                 <Link to="/committees" className="text-white/60 hover:text-white transition-colors text-sm">
                   Committees
-                </Link>
-              </li>
-              <li>
-                <Link to="/schedule" className="text-white/60 hover:text-white transition-colors text-sm">
-                  Schedule
                 </Link>
               </li>
               <li>
@@ -65,9 +55,9 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4 text-white">Contact</h4>
             <p className="text-white/60 text-sm mb-2">
-              customizable customizable customizable customizable customizable
+              For inquiries and information about BKPMUN
             </p>
-            <p className="text-white/60 text-sm">Email: customizable</p>
+            <p className="text-white/60 text-sm">Email: info@bkpmun.org</p>
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-white/10 text-center">

@@ -10,10 +10,7 @@ const StudyGuides = () => {
   const inView = useInView(sectionRef, { once: true, amount: 0.2 })
   const toast = useToast()
 
-  const guides = [
-    { category: 'security', icon: Shield, title: 'customizable', description: 'customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable', duration: 'customizable', pages: 'customizable', tags: ['customizable', 'customizable', 'customizable'] },
-    { category: 'environmental', icon: Leaf, title: 'customizable', description: 'customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable', duration: 'customizable', pages: 'customizable', tags: ['customizable', 'customizable', 'customizable'] },
-  ]
+  const guides = []
 
   const filteredGuides = guides.filter(guide => {
     const matchesFilter = filter === 'all' || guide.category === filter
@@ -30,10 +27,7 @@ const StudyGuides = () => {
     { id: 'human-rights', label: 'Human Rights' },
   ]
 
-  const tips = [
-    { icon: FileText, title: 'customizable', description: 'customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable' },
-    { icon: Users, title: 'customizable', description: 'customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable' },
-  ]
+  const tips = []
 
   return (
     <div className="pt-32 min-h-screen">
@@ -95,106 +89,77 @@ const StudyGuides = () => {
       {/* Guides Grid */}
       <section ref={sectionRef} className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {filteredGuides.map((guide, index) => {
-              const Icon = guide.icon
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ y: -10, scale: 1.02 }}
-                  className="glass-effect rounded-2xl p-6 hover:border-white/30 transition-all group card-hover starry-border shimmer hover-lift"
-                >
-                  <div className="flex justify-between items-start mb-4">
-                    <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                      guide.category === 'security' ? 'bg-red-500/20 text-red-400' :
-                      guide.category === 'environmental' ? 'bg-green-500/20 text-green-400' :
-                      'bg-blue-500/20 text-blue-400'
-                    }`}>
-                      {guide.category}
-                    </span>
-                    <span className="px-3 py-1 rounded-full text-xs bg-white/10 text-white/70">
-                      customizable
-                    </span>
-                  </div>
+          {filteredGuides.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-white/60 text-lg">Study guides will be available soon.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {filteredGuides.map((guide, index) => {
+                const Icon = guide.icon
+                return (
                   <motion.div
-                    whileHover={{ rotate: 360, scale: 1.1 }}
-                    transition={{ duration: 0.5 }}
-                    className="text-4xl mb-4 inline-block"
+                    key={index}
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ y: -10, scale: 1.02 }}
+                    className="glass-effect rounded-2xl p-6 hover:border-white/30 transition-all group card-hover starry-border shimmer hover-lift"
                   >
-                    <Icon className="text-white" />
-                  </motion.div>
-                  <h3 className="text-xl font-bold mb-3 text-white group-hover:text-white transition-colors">
-                    {guide.title}
-                  </h3>
-                  <p className="text-white/60 text-sm mb-4 leading-relaxed">{guide.description}</p>
-                  <div className="flex items-center gap-4 text-xs text-white/50 mb-4">
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-4 h-4" />
-                      {guide.duration}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <FileText className="w-4 h-4" />
-                      {guide.pages}
-                    </span>
-                  </div>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {guide.tags.map((tag, i) => (
-                      <span key={i} className="px-2 py-1 bg-white/10 text-white/70 rounded text-xs">
-                        {tag}
+                    <div className="flex justify-between items-start mb-4">
+                      <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                        guide.category === 'security' ? 'bg-red-500/20 text-red-400' :
+                        guide.category === 'environmental' ? 'bg-green-500/20 text-green-400' :
+                        'bg-blue-500/20 text-blue-400'
+                      }`}>
+                        {guide.category}
                       </span>
-                    ))}
-                  </div>
-                  <button 
-                    onClick={() => {
-                      toast.showInfo('Guide opened!')
-                    }}
-                    className="w-full py-2 warm-gradient rounded-lg text-black font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-white/20 transition-all group elegant-button ripple-effect pulse-glow"
-                  >
-                    Read Guide
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </button>
-                </motion.div>
-              )
-            })}
-          </div>
+                    </div>
+                    <motion.div
+                      whileHover={{ rotate: 360, scale: 1.1 }}
+                      transition={{ duration: 0.5 }}
+                      className="text-4xl mb-4 inline-block"
+                    >
+                      <Icon className="text-white" />
+                    </motion.div>
+                    <h3 className="text-xl font-bold mb-3 text-white group-hover:text-white transition-colors">
+                      {guide.title}
+                    </h3>
+                    <p className="text-white/60 text-sm mb-4 leading-relaxed">{guide.description}</p>
+                    <div className="flex items-center gap-4 text-xs text-white/50 mb-4">
+                      <span className="flex items-center gap-1">
+                        <Clock className="w-4 h-4" />
+                        {guide.duration}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <FileText className="w-4 h-4" />
+                        {guide.pages}
+                      </span>
+                    </div>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {guide.tags.map((tag, i) => (
+                        <span key={i} className="px-2 py-1 bg-white/10 text-white/70 rounded text-xs">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <button 
+                      onClick={() => {
+                        toast.showInfo('Guide opened!')
+                      }}
+                      className="w-full py-2 warm-gradient rounded-lg text-black font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-white/20 transition-all group elegant-button ripple-effect pulse-glow"
+                    >
+                      Read Guide
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </button>
+                  </motion.div>
+                )
+              })}
+            </div>
+          )}
         </div>
       </section>
 
-      {/* Quick Tips */}
-      <section className="py-20 bg-dark-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-orbitron font-bold text-center mb-12 gradient-text-premium neon-glow">Quick Tips for Success</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {tips.map((tip, index) => {
-              const Icon = tip.icon
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ y: -5 }}
-                  className="glass-effect rounded-xl p-6 text-center card-hover"
-                >
-                  <motion.div
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.5 }}
-                    className="text-4xl mb-4 inline-block"
-                  >
-                    <Icon className="text-white mx-auto" />
-                  </motion.div>
-                  <h4 className="text-lg font-bold mb-2 text-white">{tip.title}</h4>
-                  <p className="text-white/60 text-sm">{tip.description}</p>
-                </motion.div>
-              )
-            })}
-          </div>
-        </div>
-      </section>
     </div>
   )
 }

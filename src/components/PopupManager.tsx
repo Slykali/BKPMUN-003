@@ -44,14 +44,14 @@ const PopupManager = () => {
         onClose={handleCloseSaveDate}
         type="save-date"
         title="Mark your calendars for BKPMUN!"
-        date="customizable"
+        date=""
       />
       <Modal
         isOpen={showAnnouncement}
         onClose={handleCloseAnnouncement}
         type="announcement"
         title="Important Announcement"
-        content="customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable"
+        content=""
       />
     </>
   )

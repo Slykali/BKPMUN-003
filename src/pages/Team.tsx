@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { User, Mail, ClipboardList, Mic } from 'lucide-react'
+import { User, ClipboardList, Mic } from 'lucide-react'
 
 const Team = () => {
   const teamRef = useRef(null)
@@ -9,14 +9,16 @@ const Team = () => {
   const staffInView = useInView(staffRef, { once: true })
 
   const team = [
-    { name: 'customizable', role: 'customizable', bio: 'customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable', email: 'customizable' },
-    { name: 'customizable', role: 'customizable', bio: 'customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable customizable', email: 'customizable' },
+    { name: 'Tuna Deveci', role: 'Secretary General', bio: 'Leading the BKPMUN conference with dedication and excellence.', email: 'tuna.deveci@bkpmun.org' },
+    { name: 'Tuana Kendirici', role: 'Co-Head of PR', bio: 'Managing public relations and communications for BKPMUN.', email: 'tuana.kendirici@bkpmun.org' },
+    { name: 'Ceylin Duman', role: 'Co-Head of Personal Relations', bio: 'Coordinating personal relations and participant engagement.', email: 'ceylin.duman@bkpmun.org' },
+    { name: 'Ateş Sağlamel', role: 'Head of Security', bio: 'Ensuring the safety and security of all participants.', email: 'ates.saglamel@bkpmun.org' },
+    { name: 'Elif Ceylin Ak', role: 'Chief of Staff', bio: 'Overseeing operations and coordinating staff activities.', email: 'elif.ak@bkpmun.org' },
+    { name: 'Suleyman', role: 'Head of IT', bio: 'Managing all technical aspects and website development for BKPMUN.', email: 'suleyman@bkpmun.org' },
+    { name: 'Hira Çinici', role: 'Head of Press', bio: 'Leading press relations and media communications.', email: 'hira.cinici@bkpmun.org' },
   ]
 
-  const staff = [
-    { icon: ClipboardList, title: 'customizable', description: 'customizable customizable customizable customizable customizable customizable' },
-    { icon: Mic, title: 'customizable', description: 'customizable customizable customizable customizable customizable customizable' },
-  ]
+  const staff = []
 
   return (
     <div className="pt-32 min-h-screen">
@@ -66,13 +68,7 @@ const Team = () => {
                   {member.name}
                 </h3>
                 <p className="text-white/80 font-semibold mb-4">{member.role}</p>
-                <p className="text-white/60 text-sm mb-6 leading-relaxed">{member.bio}</p>
-                <div className="pt-4 border-t border-white/20">
-                  <div className="flex items-center justify-center gap-2 text-white/70 text-sm">
-                    <Mail className="w-4 h-4" />
-                    <span className="break-all">{member.email}</span>
-                  </div>
-                </div>
+                <p className="text-white/60 text-sm leading-relaxed">{member.bio}</p>
               </motion.div>
             ))}
           </div>
