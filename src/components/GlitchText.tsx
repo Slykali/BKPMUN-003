@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { usePerformanceMode } from '../context/PerformanceContext'
 
 interface GlitchTextProps {
   text: string
@@ -8,15 +9,21 @@ interface GlitchTextProps {
 
 const GlitchText = ({ text, className = '' }: GlitchTextProps) => {
   const [glitched, setGlitched] = useState(false)
+  const { performanceMode } = usePerformanceMode()
 
   useEffect(() => {
+    if (performanceMode) {
+      setGlitched(false)
+      return
+    }
+
     const interval = setInterval(() => {
       setGlitched(true)
       setTimeout(() => setGlitched(false), 200)
     }, 3000)
 
     return () => clearInterval(interval)
-  }, [])
+  }, [performanceMode])
 
   return (
     <motion.span
@@ -42,4 +49,3 @@ const GlitchText = ({ text, className = '' }: GlitchTextProps) => {
 }
 
 export default GlitchText
-

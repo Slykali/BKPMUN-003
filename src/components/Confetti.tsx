@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { usePerformanceMode } from '../context/PerformanceContext'
 
 interface ConfettiProps {
   trigger: boolean
@@ -6,9 +7,10 @@ interface ConfettiProps {
 
 const Confetti = ({ trigger }: ConfettiProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const { performanceMode } = usePerformanceMode()
 
   useEffect(() => {
-    if (!trigger) return
+    if (!trigger || performanceMode) return
 
     const canvas = canvasRef.current
     if (!canvas) return
@@ -45,7 +47,7 @@ const Confetti = ({ trigger }: ConfettiProps) => {
       })
     }
 
-    let animationId: number
+    let animationId: number | undefined
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -74,20 +76,13 @@ const Confetti = ({ trigger }: ConfettiProps) => {
     animate()
 
     return () => {
-      if (animationId) cancelAnimationFrame(animationId)
+      if (animationId !== undefined) {
+        cancelAnimationFrame(animationId)
+      }
     }
-  }, [trigger])
+  }, [performanceMode, trigger])
 
-  useEffect(() => {
-    if (trigger) {
-      const timer = setTimeout(() => {
-        // Animation completes
-      }, 3000)
-      return () => clearTimeout(timer)
-    }
-  }, [trigger])
-
-  if (!trigger) return null
+  if (!trigger || performanceMode) return null
 
   return (
     <canvas
@@ -99,4 +94,3 @@ const Confetti = ({ trigger }: ConfettiProps) => {
 }
 
 export default Confetti
-

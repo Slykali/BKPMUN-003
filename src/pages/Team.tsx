@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { User, ClipboardList, Mic } from 'lucide-react'
+import { User } from 'lucide-react'
 
 const Team = () => {
   const teamRef = useRef(null)
@@ -14,11 +14,18 @@ const Team = () => {
     { name: 'Ceylin Duman', role: 'Co-Head of Personal Relations', bio: 'Coordinating personal relations and participant engagement.', email: 'ceylin.duman@bkpmun.org' },
     { name: 'Ateş Sağlamel', role: 'Head of Security', bio: 'Ensuring the safety and security of all participants.', email: 'ates.saglamel@bkpmun.org' },
     { name: 'Elif Ceylin Ak', role: 'Chief of Staff', bio: 'Overseeing operations and coordinating staff activities.', email: 'elif.ak@bkpmun.org' },
-    { name: 'Suleyman', role: 'Head of IT', bio: 'Managing all technical aspects and website development for BKPMUN.', email: 'suleyman@bkpmun.org' },
+    { name: 'Belinay Özmutlu', role: 'Head of IT', bio: 'Leading all technical aspects and website development for BKPMUN.', email: 'belinay.ozmutlu@bkpmun.org' },
+    { name: 'Süleyman Özdemir', role: 'Co-Head of IT', bio: 'Managing technical infrastructure and supporting website development for BKPMUN.', email: 'suleyman.ozdemir@bkpmun.org' },
     { name: 'Hira Çinici', role: 'Head of Press', bio: 'Leading press relations and media communications.', email: 'hira.cinici@bkpmun.org' },
   ]
 
-  const staff = []
+  interface StaffItem {
+    icon: React.ComponentType<{ className?: string }>
+    title: string
+    description: string
+  }
+
+  const staff: StaffItem[] = []
 
   return (
     <div className="pt-32 min-h-screen">

@@ -19,6 +19,18 @@ export default defineConfig({
     outDir: 'dist',
     assetsDir: 'assets',
     sourcemap: false,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'framer-motion': ['framer-motion'],
+          'ui-vendor': ['lucide-react', 'react-hot-toast'],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 1000,
+    minify: 'esbuild',
+    cssMinify: 'esbuild',
   },
 })
 

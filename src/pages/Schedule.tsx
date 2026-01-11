@@ -10,26 +10,27 @@ const Schedule = () => {
 
   const days = [
     {
-      title: 'Day 1 - customizable',
+      title: 'January 12, 2026 - Day 1',
       events: [
-        { time: 'customizable', title: 'customizable', description: 'customizable customizable customizable customizable customizable customizable customizable', location: 'customizable' },
-        { time: 'customizable', title: 'customizable', description: 'customizable customizable customizable customizable customizable customizable customizable', location: 'customizable' },
-        { time: 'customizable', title: 'customizable', description: 'customizable customizable customizable customizable customizable customizable customizable', location: 'customizable' },
+        { time: '09:30 - 10:15', title: 'Opening Ceremony', description: 'Welcome address and official opening of the BKPMUN conference', location: 'Main Hall' },
+        { time: '10:30 - 11:30', title: 'Session 1', description: 'First committee session of the day', location: 'Committee Rooms' },
+        { time: '11:30 - 12:00', title: 'Coffee Break', description: 'Networking and refreshments', location: 'Lobby' },
+        { time: '12:00 - 13:20', title: 'Session 2', description: 'Second committee session', location: 'Committee Rooms' },
+        { time: '13:30 - 14:00', title: 'Lunch', description: 'Lunch break for all participants', location: 'Dining Hall' },
+        { time: '14:00 - 15:30', title: 'Session 3', description: 'Third committee session', location: 'Committee Rooms' },
+        { time: '15:30 - 16:00', title: 'Coffee Break', description: 'Afternoon networking and refreshments', location: 'Lobby' },
+        { time: '16:00 - 17:00', title: 'Session 4', description: 'Fourth and final session of Day 1', location: 'Committee Rooms' },
       ]
     },
     {
-      title: 'Day 2 - customizable',
+      title: 'January 13, 2026 - Day 2',
       events: [
-        { time: 'customizable', title: 'customizable', description: 'customizable customizable customizable customizable customizable customizable customizable', location: 'customizable' },
-        { time: 'customizable', title: 'customizable', description: 'customizable customizable customizable customizable customizable customizable customizable', location: 'customizable' },
-        { time: 'customizable', title: 'customizable', description: 'customizable customizable customizable customizable customizable customizable customizable', location: 'customizable' },
-      ]
-    },
-    {
-      title: 'Day 3 - customizable',
-      events: [
-        { time: 'customizable', title: 'customizable', description: 'customizable customizable customizable customizable customizable customizable customizable', location: 'customizable' },
-        { time: 'customizable', title: 'customizable', description: 'customizable customizable customizable customizable customizable customizable customizable', location: 'customizable' },
+        { time: '09:30 - 10:15', title: 'Session 5', description: 'First committee session of Day 2', location: 'Committee Rooms' },
+        { time: '11:00 - 11:30', title: 'Coffee Break', description: 'Morning networking and refreshments', location: 'Lobby' },
+        { time: '11:30 - 13:20', title: 'Session 6', description: 'Second committee session', location: 'Committee Rooms' },
+        { time: '13:20 - 14:00', title: 'Lunch', description: 'Lunch break for all participants', location: 'Dining Hall' },
+        { time: '14:00 - 15:30', title: 'Session 7', description: 'Final committee session', location: 'Committee Rooms' },
+        { time: '15:30 - 17:00', title: 'Closing Ceremony', description: 'Awards ceremony and official closing of BKPMUN 2026', location: 'Main Hall' },
       ]
     },
   ]

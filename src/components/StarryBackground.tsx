@@ -1,9 +1,13 @@
 import { useEffect, useRef } from 'react'
+import { usePerformanceMode } from '../context/PerformanceContext'
 
 const StarryBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const { performanceMode } = usePerformanceMode()
 
   useEffect(() => {
+    if (performanceMode) return
+
     const canvas = canvasRef.current
     if (!canvas) return
 
@@ -37,6 +41,8 @@ const StarryBackground = () => {
         brightness: Math.random(),
       })
     }
+
+    let animationId: number | undefined
 
     const animate = () => {
       ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'
@@ -83,15 +89,24 @@ const StarryBackground = () => {
         ctx.shadowBlur = 0
       })
 
-      requestAnimationFrame(animate)
+      animationId = requestAnimationFrame(animate)
     }
 
     animate()
 
     return () => {
       window.removeEventListener('resize', setCanvasSize)
+      if (animationId !== undefined) {
+        cancelAnimationFrame(animationId)
+      }
     }
-  }, [])
+  }, [performanceMode])
+
+  if (performanceMode) {
+    return (
+      <div className="fixed inset-0 pointer-events-none z-0 bg-gradient-to-b from-black via-dark-900 to-dark-900 opacity-90" />
+    )
+  }
 
   return (
     <canvas
@@ -103,4 +118,3 @@ const StarryBackground = () => {
 }
 
 export default StarryBackground
-

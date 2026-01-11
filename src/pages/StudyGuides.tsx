@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { Search, Clock, FileText, ArrowRight, Shield, Leaf, Users } from 'lucide-react'
+import { Search, Clock, FileText, ArrowRight, Globe, Shield } from 'lucide-react'
 import { useToast } from '../hooks/useToast'
 
 const StudyGuides = () => {
@@ -10,9 +10,38 @@ const StudyGuides = () => {
   const inView = useInView(sectionRef, { once: true, amount: 0.2 })
   const toast = useToast()
 
-  const guides = []
+  interface Guide {
+    category: string
+    icon: React.ComponentType<{ className?: string }>
+    title: string
+    description: string
+    duration: string
+    pages: string
+    tags: string[]
+  }
 
-  const filteredGuides = guides.filter(guide => {
+  const guides: Guide[] = [
+    {
+      category: 'health',
+      icon: Globe,
+      title: 'WHO Study Guide',
+      description: 'Comprehensive study guide for the World Health Organization committee covering global health issues, disease prevention, and healthcare accessibility.',
+      duration: '45 min read',
+      pages: '600 KB PDF',
+      tags: ['Health', 'Global Issues', 'Disease Prevention', 'Healthcare'],
+    },
+    {
+      category: 'human-rights',
+      icon: Shield,
+      title: 'UNWOMEN Study Guide',
+      description: 'Detailed study guide for the UN Women committee focusing on gender equality, women\'s rights, and empowerment issues on a global scale.',
+      duration: '40 min read',
+      pages: 'PDF',
+      tags: ['Gender Equality', 'Women\'s Rights', 'Empowerment', 'Human Rights'],
+    },
+  ]
+
+  const filteredGuides = guides.filter((guide: Guide) => {
     const matchesFilter = filter === 'all' || guide.category === filter
     const matchesSearch = guide.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          guide.description.toLowerCase().includes(searchTerm.toLowerCase())
@@ -21,13 +50,13 @@ const StudyGuides = () => {
 
   const filters = [
     { id: 'all', label: 'All Topics' },
+    { id: 'health', label: 'Health' },
+    { id: 'human-rights', label: 'Human Rights' },
     { id: 'security', label: 'Security' },
     { id: 'economic', label: 'Economic' },
     { id: 'environmental', label: 'Environmental' },
-    { id: 'human-rights', label: 'Human Rights' },
   ]
 
-  const tips = []
 
   return (
     <div className="pt-32 min-h-screen">
@@ -110,6 +139,8 @@ const StudyGuides = () => {
                       <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
                         guide.category === 'security' ? 'bg-red-500/20 text-red-400' :
                         guide.category === 'environmental' ? 'bg-green-500/20 text-green-400' :
+                        guide.category === 'health' ? 'bg-blue-500/20 text-blue-400' :
+                        guide.category === 'human-rights' ? 'bg-purple-500/20 text-purple-400' :
                         'bg-blue-500/20 text-blue-400'
                       }`}>
                         {guide.category}
@@ -137,21 +168,24 @@ const StudyGuides = () => {
                       </span>
                     </div>
                     <div className="flex flex-wrap gap-2 mb-4">
-                      {guide.tags.map((tag, i) => (
+                      {guide.tags.map((tag: string, i: number) => (
                         <span key={i} className="px-2 py-1 bg-white/10 text-white/70 rounded text-xs">
                           {tag}
                         </span>
                       ))}
                     </div>
-                    <button 
+                    <a
+                      href="https://drive.google.com/drive/folders/1UtOlBqlOHXSOhPmTPJXszpRohFt68fBS?usp=sharing"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       onClick={() => {
-                        toast.showInfo('Guide opened!')
+                        toast.showInfo('Opening study guide...')
                       }}
                       className="w-full py-2 warm-gradient rounded-lg text-black font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-white/20 transition-all group elegant-button ripple-effect pulse-glow"
                     >
-                      Read Guide
+                      Download Guide
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </button>
+                    </a>
                   </motion.div>
                 )
               })}

@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { usePerformanceMode } from '../context/PerformanceContext'
 
 interface MagneticButtonProps {
   children: React.ReactNode
@@ -10,6 +11,19 @@ interface MagneticButtonProps {
 const MagneticButton = ({ children, className = '', onClick }: MagneticButtonProps) => {
   const ref = useRef<HTMLButtonElement>(null)
   const [isHovered, setIsHovered] = useState(false)
+  const { performanceMode } = usePerformanceMode()
+
+  if (performanceMode) {
+    return (
+      <button
+        type="button"
+        className={className}
+        onClick={onClick}
+      >
+        {children}
+      </button>
+    )
+  }
 
   const x = useMotionValue(0)
   const y = useMotionValue(0)
@@ -50,6 +64,7 @@ const MagneticButton = ({ children, className = '', onClick }: MagneticButtonPro
     <motion.button
       ref={ref}
       className={className}
+      type="button"
       onClick={onClick}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
@@ -74,4 +89,3 @@ const MagneticButton = ({ children, className = '', onClick }: MagneticButtonPro
 }
 
 export default MagneticButton
-

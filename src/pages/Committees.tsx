@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { Shield, Globe, Calendar, MapPin, Shirt, FileText } from 'lucide-react'
+import { Shield, Globe, Shirt } from 'lucide-react'
 
 const Committees = () => {
   const sectionRef = useRef(null)

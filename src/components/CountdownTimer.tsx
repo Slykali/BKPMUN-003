@@ -53,10 +53,10 @@ const CountdownTimer = ({ targetDate }: CountdownTimerProps) => {
       >
         <div className="glass-effect rounded-2xl p-8 inline-block card-hover starry-border pulse-glow">
           <p className="text-3xl md:text-4xl font-orbitron font-bold gradient-text-premium neon-glow mb-2">
-            Etkinlik Başladı! 🎉
+            The event has started! 🎉
           </p>
           <p className="text-white/70 text-lg">
-            BKPMUN'a hoş geldiniz!
+            Welcome to BKPMUN!
           </p>
         </div>
       </motion.div>
@@ -64,10 +64,10 @@ const CountdownTimer = ({ targetDate }: CountdownTimerProps) => {
   }
 
   const timeUnits = [
-    { label: 'Gün', value: timeLeft.days },
-    { label: 'Saat', value: timeLeft.hours },
-    { label: 'Dakika', value: timeLeft.minutes },
-    { label: 'Saniye', value: timeLeft.seconds },
+    { label: 'Days', value: timeLeft.days },
+    { label: 'Hours', value: timeLeft.hours },
+    { label: 'Minutes', value: timeLeft.minutes },
+    { label: 'Seconds', value: timeLeft.seconds },
   ]
 
   return (
@@ -77,7 +77,7 @@ const CountdownTimer = ({ targetDate }: CountdownTimerProps) => {
       transition={{ delay: 0.8 }}
       className="mt-8"
     >
-      <p className="text-white/70 text-lg mb-6 font-medium">Etkinlik başlangıcına kalan süre:</p>
+      <p className="text-white/70 text-lg mb-6 font-medium">Event starts in:</p>
       <div className="flex flex-wrap justify-center gap-4 md:gap-6">
         {timeUnits.map((unit, index) => (
           <motion.div

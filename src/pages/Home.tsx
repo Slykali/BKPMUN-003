@@ -11,15 +11,11 @@ const Home = () => {
   const [confettiTrigger, setConfettiTrigger] = useState(false)
 
   const featuresRef = useRef(null)
-  const statsRef = useRef(null)
   const featuresInView = useInView(featuresRef, { once: true, amount: 0.2 })
-  const statsInView = useInView(statsRef, { once: true })
 
   const features = [
     { icon: Shirt, title: 'Dress Code', description: 'Formal clothing is required for all participants. Please adhere to the formal dress code throughout the conference.' },
   ]
-
-  const stats = []
 
   return (
     <div className="pt-20">
@@ -63,7 +59,7 @@ const Home = () => {
             >
               Bahçeşehir Koleji Parkorman Model United Nations conference
             </motion.p>
-            <CountdownTimer targetDate="2026-01-14 09:00:00" />
+            <CountdownTimer targetDate="2026-01-12 09:00:00" />
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -87,6 +83,11 @@ const Home = () => {
                   whileHover={{ x: 0 }}
                   transition={{ duration: 0.3 }}
                 />
+              </MagneticButton>
+              <MagneticButton
+                className="px-8 py-4 border-2 border-white rounded-full font-semibold text-white hover:bg-white/10 transition-all card-hover neon-border ripple-effect"
+              >
+                <Link to="/schedule">View Schedule</Link>
               </MagneticButton>
               <MagneticButton
                 className="px-8 py-4 border-2 border-white rounded-full font-semibold text-white hover:bg-white/10 transition-all card-hover neon-border ripple-effect"
